@@ -9,9 +9,11 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Event Name</th>
                 <th>Description</th>
                 <th>Contact Email</th>
+                <th>When</th>
+                <th>Where</th>
             </tr>
         </thead>
             <tr th:each="event : ${events}">
@@ -19,6 +21,8 @@
                 <td th:text="${event.name}"></td>
                 <td th:text="${event.description}"></td>
                 <td th:text="${event.contactEmail}"></td>
+                <td th:text="${event.when}"></td>
+                <td th:text="${event.where}"></td>
             </tr>
     </table>
 </body>

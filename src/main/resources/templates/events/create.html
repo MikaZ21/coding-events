@@ -7,7 +7,7 @@
 
 <form method="post">
     <div class="form-group">
-        <label>Name
+        <label>Event Name
             <input th:field="${event.name}" class="form-control">
         </label>
         <p class="error" th:errors="${event.name}"></p>
@@ -19,6 +19,7 @@
         </label>
         <p class="error" th:errors="${event.description}"></p>
     </div>
+
     <div class="form-group">
         <label>Contact Email
             <input th:field="${event.contactEmail}" class="form-control">
@@ -26,7 +27,21 @@
         <p class="error" th:errors="${event.contactEmail}"></p>
     </div>
 
+    <div class="form-group">
+        <label>When (MM/dd/yyyy)
+            <input th:field="${event.when}" class="form-control">
+        </label>
+        <p class="error" th:errors="${event.when}"></p>
+    </div>
 
+    <div class="form-group">
+        <label>Where
+            <input th:field="${event.where}" class="form-control">
+        </label>
+        <p class="error" th:errors="${event.where}"></p>
+    </div>
+
+    <br>
     <div class="form-group">
         <input type="submit" value="Create Event" class="btn btn-success">
     </div>

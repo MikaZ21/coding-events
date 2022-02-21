@@ -1,8 +1,9 @@
 package org.launchcode.codingevents.model;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.*;
+import java.util.Date;
 import java.util.Objects;
 
 public class Event {
@@ -21,15 +22,26 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotNull(message = "Date is required.")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    private Date when;
+
+    @NotBlank(message = "Location is required.")
+    private String where;
+
+    public Event(String name, String description, String contactEmail, Date when, String where) {
+        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.id = nextId;
-        nextId++;
+        this.when = when;
+        this.where = where;
     }
 
-    public Event() {}
+    public Event() {
+        this.id = nextId;
+            nextId++;
+    }
 
     public String getName() {
         return name;
@@ -53,6 +65,22 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public Date getWhen() {
+        return when;
+    }
+
+    public void setWhen(Date when) {
+        this.when = when;
+    }
+
+    public String getWhere() {
+        return where;
+    }
+
+    public void setWhere(String where) {
+        this.where = where;
     }
 
     public int getId() { return id;}
