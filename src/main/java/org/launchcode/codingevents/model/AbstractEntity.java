@@ -1,2 +1,5 @@
-package org.launchcode.codingevents.model;public class AbstractEntity {
+package org.launchcode.codingevents.model;
+
+public abstract class AbstractEntity {
+
 }

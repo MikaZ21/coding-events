@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class EventCategory {
+public class EventCategory extends AbstractEntity {
 
     @Id
     @GeneratedValue

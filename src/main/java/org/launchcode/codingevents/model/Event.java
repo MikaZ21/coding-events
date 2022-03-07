@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Event {
+public class Event extends AbstractEntity {
 
     @Id
     @GeneratedValue
