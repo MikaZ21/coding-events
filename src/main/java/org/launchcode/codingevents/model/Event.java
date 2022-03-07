@@ -1,15 +1,23 @@
 package org.launchcode.codingevents.model;
 
+//import jdk.jfr.EventType;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
+//    private static int nextId = 1;
 
     @NotBlank(message = "Name is required.")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters.")
@@ -22,26 +30,41 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    @NotNull(message = "Date is required.")
-    @DateTimeFormat(pattern = "MM/dd/yyyy")
-    private Date when;
+    private EventType type;
 
-    @NotBlank(message = "Location is required.")
-    private String where;
+//    @DateTimeFormat(pattern = "MM/dd/yyyy")
+//    private String when;
+//
+//    @NotBlank(message = "Location must be provided.")
+//    private String where;
+////
+//    @AssertTrue(message = "Registration is required at all times.")
+//    private boolean registrationRequired;
+//
+//    private int numberOfAttendees;
+//
+//    @Positive(message = "Number of attendees must be one or more.")
+//    public int getNumberOfAttendees() {
+//        return numberOfAttendees;
+//    }
+//
+//    public void setNumberOfAttendees(int numberOfAttendees) {
+//        this.numberOfAttendees = numberOfAttendees;
+//    }
+//
+//    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
-    public Event(String name, String description, String contactEmail, Date when, String where) {
-        this();
+    public Event(String name, String description, String contactEmail, EventType type) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.when = when;
-        this.where = where;
+//        this.when = dateFormat.format(when);
+//        this.where = where;
+        this.type = type;
     }
 
-    public Event() {
-        this.id = nextId;
-            nextId++;
-    }
+    public Event() {}
+
 
     public String getName() {
         return name;
@@ -67,21 +90,41 @@ public class Event {
         this.contactEmail = contactEmail;
     }
 
-    public Date getWhen() {
-        return when;
+    public EventType getType() {
+        return type;
     }
 
-    public void setWhen(Date when) {
-        this.when = when;
+    public void setType(EventType type) {
+        this.type = type;
     }
 
-    public String getWhere() {
-        return where;
-    }
-
-    public void setWhere(String where) {
-        this.where = where;
-    }
+    //    @NotEmpty(message = "Date must be provided.")
+//    public String getWhen() {
+////        if (when == null) {
+////            when = new Date();
+////        }
+//        return when;
+//    }
+//
+//    public void setWhen(Date when)  {
+//        this.when = dateFormat.format(when);
+//    }
+//
+//    public String getWhere() {
+//        return where;
+//    }
+//
+//    public void setWhere(String where) {
+//        this.where = where;
+//    }
+//
+//    public boolean isRegistrationRequired() {
+//        return registrationRequired;
+//    }
+//
+//    public void setRegistrationRequired(boolean registrationRequired) {
+//        this.registrationRequired = registrationRequired;
+//    }
 
     public int getId() { return id;}
 

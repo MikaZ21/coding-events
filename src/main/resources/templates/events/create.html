@@ -11,8 +11,8 @@
             <input th:field="${event.name}" class="form-control">
         </label>
         <p class="error" th:errors="${event.name}"></p>
-
     </div>
+
     <div class="form-group">
         <label>Description
             <input th:field="${event.description}" class="form-control">
@@ -28,20 +28,47 @@
     </div>
 
     <div class="form-group">
-        <label>When (MM/dd/yyyy)
-            <input th:field="${event.when}" class="form-control">
+        <label>Type
+            <select th:field="${event.type}">
+                <option th:each="type : ${types}"
+                        th:value="${type}"
+                        th:text="${type.displayName}"
+                ></option>
+            </select>
         </label>
-        <p class="error" th:errors="${event.when}"></p>
     </div>
 
-    <div class="form-group">
-        <label>Where
-            <input th:field="${event.where}" class="form-control">
-        </label>
-        <p class="error" th:errors="${event.where}"></p>
-    </div>
 
-    <br>
+    <!--    <div class="form-group">-->
+<!--        <label>When (MM/dd/yyyy)-->
+<!--            <input th:field="${event.when}" class="form-control">-->
+<!--        </label>-->
+<!--        <p class="error" th:errors="${event.when}"></p>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label>Where-->
+<!--            <input th:field="${event.where}" class="form-control">-->
+<!--        </label>-->
+<!--        <p class="error" th:errors="${event.where}"></p>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label>Registration Required?-->
+<!--            <input type="checkbox" th:value="${event.registrationRequired}" th:field="${event.registrationRequired}" class="form-control">-->
+<!--        </label>-->
+<!--        <p class="error" th:errors="${event.registrationRequired}"></p>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label>Number Of Attendees-->
+<!--            <input type="number" th:field="${event.numberOfAttendees}" class="form-control">-->
+<!--        </label>-->
+<!--        <p class="error" th:errors="${event.numberOfAttendees}"></p>-->
+<!--    </div>-->
+
+
+<!--    <br>-->
     <div class="form-group">
         <input type="submit" value="Create Event" class="btn btn-success">
     </div>
