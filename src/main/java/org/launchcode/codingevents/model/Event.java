@@ -3,12 +3,13 @@ package org.launchcode.codingevents.model;
 //import jdk.jfr.EventType;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,14 +23,17 @@ public class Event extends AbstractEntity {
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters.")
     private String name;
 
-    @Size(max = 500, message = "Description too long!")
-    private String description;
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
+    @NotNull
+    private EventDetails eventDetails;
 
-    @NotBlank(message = "Email is required.")
-    @Email(message = "Invalid email. Try again.")
-    private String contactEmail;
+    @ManyToOne
+    @NotNull(message = "Category is required")
+    private EventCategory eventCategory;
 
-    private EventType type;
+    @ManyToMany
+    private final List<Tag> tags = new ArrayList<>();
 
 //    @DateTimeFormat(pattern = "MM/dd/yyyy")
 //    private String when;
@@ -53,13 +57,11 @@ public class Event extends AbstractEntity {
 //
 //    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
-    public Event(String name, String description, String contactEmail, EventType type) {
+    public Event(String name, EventCategory eventCategory) {
         this.name = name;
-        this.description = description;
-        this.contactEmail = contactEmail;
 //        this.when = dateFormat.format(when);
 //        this.where = where;
-        this.type = type;
+        this.eventCategory = eventCategory;
     }
 
     public Event() {}
@@ -73,28 +75,28 @@ public class Event extends AbstractEntity {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public EventCategory getEventCategory() {
+        return eventCategory;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public EventDetails getEventDetails() {
+        return eventDetails;
     }
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public void setEventDetails(EventDetails eventDetails) {
+        this.eventDetails = eventDetails;
     }
 
-    public EventType getType() {
-        return type;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public void setType(EventType type) {
-        this.type = type;
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
     }
 
     //    @NotEmpty(message = "Date must be provided.")
