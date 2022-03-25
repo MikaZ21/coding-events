@@ -15,10 +15,15 @@ public class EventDetails extends AbstractEntity {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
+//    @NotBlank(message = "Location must be provided.")
+//    private String where;
+
+
     public EventDetails(@Size(max = 500, message = "Description too long!")
                                     String description, String contactEmail) {
         this.description = description;
         this.contactEmail = contactEmail;
+//        this.where = where;
     }
 
     public EventDetails() {}
@@ -38,4 +43,12 @@ public class EventDetails extends AbstractEntity {
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
     }
+
+//    public String getWhere() {
+//        return where;
+//    }
+//
+//    public void setWhere(String where) {
+//        this.where = where;
+//    }
 }

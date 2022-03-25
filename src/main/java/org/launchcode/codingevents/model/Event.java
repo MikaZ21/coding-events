@@ -61,6 +61,7 @@ public class Event extends AbstractEntity {
         this.name = name;
 //        this.when = dateFormat.format(when);
 //        this.where = where;
+//        this.when = "03/24/2022";
         this.eventCategory = eventCategory;
     }
 
@@ -99,7 +100,7 @@ public class Event extends AbstractEntity {
         this.tags.add(tag);
     }
 
-    //    @NotEmpty(message = "Date must be provided.")
+//    @NotEmpty(message = "Date must be provided.")
 //    public String getWhen() {
 ////        if (when == null) {
 ////            when = new Date();
@@ -111,6 +112,7 @@ public class Event extends AbstractEntity {
 //        this.when = dateFormat.format(when);
 //    }
 //
+
 //    public String getWhere() {
 //        return where;
 //    }
